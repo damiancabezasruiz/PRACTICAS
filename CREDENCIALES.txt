@@ -1,23 +1,16 @@
+## Base de datos
+Host: localhost
+Usuario BD: user_bd_atu
+Contraseña BD: q5DzXzsN!wf0*qj1
 
-=========================================================
+## Panel Admin osTicket
+URL: https://incidencias.grupoatu.com/osticket/scp
+Usuario: OsAdmin
+Contraseña: XzsN!wf0*q
 
-Contraseña y usuario bd
+## Usuarios Gestor y tablas
+Usuario: IncidenciasAtu / Contraseña: D/*50smPm@7FPM@c£EUMU&
+Usuario: Admin / Contraseña: 1,<X8r0.5(Tl03?-gq]giU
 
-user_bd_atu
-q5DzXzsN!wf0*qj1
-
-=========================================================
-
-Contraseña y usuario panel admin OsTickets
-
-OsAdmin
-XzsN!wf0*q
-
-=========================================================
-
-Usuarios tablas - gestor
-
-IncidenciasAtu => D/*50smPm@7FPM@c£EUMU&
-Admin          => 1,<X8r0.5(Tl03?-gq]giU
-
-=========================================================
+## Servidor / Plesk
+URL: vps-dc623e19.vps.ovh.net
