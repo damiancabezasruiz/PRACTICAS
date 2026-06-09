@@ -1,0 +1,444 @@
+*{
+    box-sizing:border-box;
+}
+
+body{
+
+    margin:0;
+
+    padding:0;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#1d2be0;
+}
+
+/* CONTENEDOR */
+
+.contenedor{
+
+    width:95%;
+
+    max-width:1600px;
+
+    margin:0 auto;
+
+    padding:25px 0 50px 0;
+}
+
+/* PANEL */
+
+.panel{
+
+    background:#1d2be0;
+
+    border-radius:20px;
+
+    padding:20px 30px 40px 30px;
+}
+
+/* TITULO */
+
+.panel h2{
+
+    text-align:center;
+
+    color:white;
+
+    font-size:38px;
+
+    margin-bottom:35px;
+}
+
+/* ACCIONES SUPERIORES */
+
+.acciones-superior{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+/* BOTONES */
+
+.btn-crear,
+.btn-reset{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:rgba(255,255,255,0.10);
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:12px 22px;
+
+    border-radius:10px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.btn-crear:hover,
+.btn-reset:hover{
+
+    background:rgba(255,255,255,0.18);
+}
+
+.btn-crear i,
+.btn-reset i{
+
+    color:white;
+}
+
+/* FILTROS */
+
+.form-filtros{
+
+    margin-bottom:30px;
+}
+
+.filtros{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.filtros input,
+.filtros select{
+
+    width:220px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding-left:15px;
+
+    font-size:15px;
+
+    outline:none;
+}
+
+/* BOTON FILTRAR */
+
+.btn-filtrar{
+
+    width:140px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,0.12);
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.btn-filtrar:hover{
+
+    background:rgba(255,255,255,0.20);
+}
+
+/* TABLA */
+
+.tabla{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+    border-radius:16px;
+
+    overflow:hidden;
+}
+
+/* HEADER TABLA */
+
+.tabla thead{
+
+    background:linear-gradient(
+        to right,
+        #4161ff,
+        #3555ff
+    );
+
+    color:white;
+}
+
+.tabla th{
+
+    padding:18px 14px;
+
+    font-size:15px;
+
+    text-align:center;
+}
+
+/* CELDAS */
+
+.tabla td{
+
+    padding:18px 14px;
+
+    text-align:center;
+
+    font-size:14px;
+
+    color:#444;
+}
+
+/* FILAS */
+
+.tabla tbody tr:nth-child(even){
+
+    background:#f5f5f5;
+}
+
+/* PASSWORD */
+
+.password{
+
+    font-size:18px;
+
+    letter-spacing:2px;
+
+    font-weight:bold;
+}
+
+/* ESTADOS */
+
+.estado{
+
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:bold;
+}
+
+.activo{
+
+    background:#d8f0dc;
+
+    color:#16963d;
+}
+
+.pendiente{
+
+    background:#f5e3a7;
+
+    color:#d89600;
+}
+
+.bloqueado{
+
+    background:#ffd8d8;
+
+    color:#e23a3a;
+}
+
+/* ACCIONES */
+
+.acciones{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+}
+
+.acciones a{
+
+    text-decoration:none;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    color:#4a54ff;
+}
+
+.acciones a:hover{
+
+    text-decoration:underline;
+}
+
+/* PAGINACION */
+
+.paginacion{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:25px;
+}
+
+.paginacion a{
+
+    width:34px;
+
+    height:34px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:8px;
+
+    background:rgba(255,255,255,0.10);
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+}
+
+.pagina-actual{
+
+    color:white;
+
+    font-weight:bold;
+
+    padding:0 10px;
+}
+
+/* FILTROS */
+
+.form-filtros{
+
+    margin-bottom:25px;
+}
+
+.filtros{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+/* INPUTS */
+
+.filtros input{
+
+    width:260px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding-left:15px;
+
+    font-size:15px;
+
+    outline:none;
+
+    background:white;
+}
+
+.filtros input::placeholder{
+
+    color:#888;
+}
+
+/* BOTON */
+
+.btn-filtrar{
+
+    width:140px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,0.12);
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.btn-filtrar:hover{
+
+    background:rgba(255,255,255,0.20);
+}
+
+.btn-eliminar{
+
+    background:#d62828;
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    margin-left:5px;
+}
+
+.btn-eliminar:hover{
+
+    background:#a4161a;
+}

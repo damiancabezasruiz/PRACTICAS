@@ -1,0 +1,244 @@
+.contenedor{
+
+    width:100%;
+
+    background:#1428d4;
+
+    padding:40px;
+}
+
+.contenido-detalle{
+
+    width:900px;
+
+    margin:0 auto;
+
+    padding-top:40px;
+}
+
+body{
+
+    margin:0;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#f5f5f5;
+}
+
+.detalle{
+
+    color:white;
+
+    text-align:center;
+
+    line-height:1.8;
+
+    font-size:36px;
+}
+.detalle h2{
+
+    font-size:48px;
+
+    margin-bottom:40px;
+}
+
+.detalle p{
+
+    font-size:26px;
+
+    margin-bottom:20px;
+}
+
+.detalle b{
+
+    font-size:26px;
+
+    color:#ffffff;
+}
+.titulo-detalle{
+
+    width:100%;
+
+    text-align:center;
+
+    font-size:55px;
+
+    font-weight:bold;
+
+    color:white !important;
+
+    margin:20px auto 40px auto;
+
+    display:block;
+}
+
+.linea-detalle{
+
+    width:100%;
+
+    height:3px;
+
+    background:#ffffff;
+
+    margin:25px 0;
+}
+
+.subtitulo{
+
+    color:white;
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    font-size:36px;
+}
+
+.btn{
+
+    width:100%;
+
+    display:block;
+
+    padding:22px;
+
+    margin-bottom:25px;
+
+    text-align:center;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.azul{
+
+    background:#2647ff;
+
+    color:white;
+}
+
+.azul:hover{
+
+    background:#1937d1;
+}
+
+.verde{
+
+    background:#cde8d2;
+
+    color:#1c9c3a;
+}
+
+.volver{
+
+    display:block;
+
+    width:260px;
+
+    margin:40px auto;
+
+    background:white;
+
+    padding:12px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    color:#2647ff;
+
+    font-weight:bold;
+}
+
+.contacto{
+
+    text-align:center;
+}
+
+.contacto a{
+
+    display:block;
+
+    color:white;
+
+    text-decoration:none;
+
+    margin-bottom:10px;
+
+    font-size:18px;
+}
+
+textarea{
+
+    width:100%;
+
+    height:220px;
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    font-size:18px;
+
+    resize:none;
+}
+
+button{
+
+    width:100%;
+
+    margin-top:25px;
+
+    padding:22px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2647ff;
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+button:hover{
+
+    background:#1937d1;
+}
+
+.pendiente-btn{
+
+    background:#f3e1a5;
+
+    color:#d88a00;
+}
+
+.gestion-btn{
+
+    background:#dfe3ff;
+
+    color:#2647ff;
+}
+
+.resuelto-btn{
+
+    background:#d6ead7;
+
+    color:#00a63e;
+}

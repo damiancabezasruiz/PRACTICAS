@@ -1,0 +1,162 @@
+*{
+    box-sizing:border-box;
+}
+
+body{
+
+    margin:0;
+
+    padding:0;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#1d2be0;
+
+       min-height:100vh;
+}
+
+/* CONTENEDOR */
+
+.contenedor{
+
+    width:100%;
+
+    min-height:calc(100vh - 150px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    padding-top:40px;
+
+    background:#1d2be0;
+}
+/* TARJETA */
+
+.detalle-box{
+
+    width:500px;
+
+    background:#1d2be0;
+
+    color:white;
+
+    text-align:center;
+}
+
+/* TITULO */
+
+.detalle-box h2{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+}
+
+/* LINEA */
+
+.linea{
+
+    width:100%;
+
+    height:2px;
+
+    background:white;
+
+    margin:25px 0;
+}
+
+/* SUBTITULO */
+
+.detalle-box h3{
+
+    font-size:34px;
+
+    margin-bottom:35px;
+}
+
+/* DATOS */
+
+.datos{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+}
+
+.datos p{
+
+    font-size:20px;
+
+    margin:0;
+}
+
+.datos strong{
+
+    color:white;
+}
+
+/* ACCIONES */
+
+.acciones{
+
+    margin-top:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+}
+
+/* BOTONES */
+
+.btn-editar,
+.btn-volver{
+
+    width:100%;
+
+    height:55px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.btn-editar{
+
+    background:#3555ff;
+
+    color:white;
+}
+
+.btn-editar:hover{
+
+    background:#4c68ff;
+}
+
+.btn-volver{
+
+    background:white;
+
+    color:#1d2be0;
+}
+
+.btn-volver:hover{
+
+    opacity:0.9;
+}
