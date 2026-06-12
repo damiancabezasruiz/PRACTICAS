@@ -156,7 +156,7 @@ if (empty($_SESSION['incidencias_auth'])) {
         *{margin:0;padding:0;box-sizing:border-box}
         body{
             font-family:'Inter',sans-serif;
-            background:linear-gradient(135deg,#134e4a,#0d9488);
+            background:linear-gradient(135deg,#2d3a9e 0%,#3b4fd8 50%,#4f63e7 100%);
             height:100vh;
             display:flex;
             align-items:center;
@@ -205,13 +205,13 @@ if (empty($_SESSION['incidencias_auth'])) {
         }
         .form-group input:focus{
             outline:none;
-            border-color:#0d9488;
-            box-shadow:0 0 0 3px rgba(13,148,136,.1);
+            border-color:#6c63ff;
+            box-shadow:0 0 0 3px rgba(108,99,255,.15);
         }
         .btn-login{
             width:100%;
             height:48px;
-            background:#0d9488;
+            background:#6c63ff;
             color:#fff;
             border:none;
             border-radius:10px;
@@ -221,7 +221,7 @@ if (empty($_SESSION['incidencias_auth'])) {
             transition:background .3s;
         }
         .btn-login:hover{
-            background:#0f766e;
+            background:#574fd6;
         }
         .error-msg{
             background:#fee2e2;
@@ -238,7 +238,7 @@ if (empty($_SESSION['incidencias_auth'])) {
         .btn-login-old {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #0d9488, #0f766e);
+            background: linear-gradient(135deg, #6c63ff, #574fd6);
             border: none;
             border-radius: 10px;
             color: #fff;
@@ -3040,7 +3040,7 @@ body{font-family:'Inter',Segoe UI,Arial,sans-serif;background:var(--bg);color:va
 .menu-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;color:#94a3b8;text-decoration:none;font-size:14px;font-weight:500;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);margin-bottom:4px;white-space:nowrap;overflow:hidden}
 .menu-item i{width:20px;text-align:center;font-size:15px;flex-shrink:0}
 .menu-item:hover{background:#1e293b;color:#fff}
-.menu-item.active{background:#0d9488;color:#fff;box-shadow:0 4px 12px rgba(13,148,136,.4)}
+.menu-item.active{background:#6366f1;color:#fff;box-shadow:0 4px 12px rgba(99,102,241,.4)}
 .sidebar.collapsed .menu-item span{display:none}
 .sidebar.collapsed .menu-item{justify-content:center;gap:0}
 .sidebar-collapse-btn{width:100%;padding:14px;background:none;border:none;border-top:1px solid rgba(255,255,255,.06);color:#94a3b8;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
@@ -3679,7 +3679,7 @@ function importar(input){
     fd.append('archivo_excel',input.files[0]);
     showToast('Procesando...','success');
     
-    fetch('importar_excel.php',{method:'POST',body:fd})
+   fetch('importar_excel_coordinadores.php',{method:'POST',body:fd})
     .then(function(r){
         // Verificar que la respuesta es texto antes de parsear JSON
         if (!r.ok) {
