@@ -2761,3 +2761,6 @@ Stack trace:
 [12-Jun-2026 10:49:14 Europe/Madrid] PHP Warning:  Constant ROOT_DIR already defined in /var/www/vhosts/incidencias.grupoatu.com/httpdocs/osticket/bootstrap.php on line 406
 [12-Jun-2026 10:49:14 Europe/Madrid] PHP Warning:  Constant INCLUDE_DIR already defined in /var/www/vhosts/incidencias.grupoatu.com/httpdocs/osticket/bootstrap.php on line 409
 [12-Jun-2026 08:49:14 UTC] Ticket exists? SI
+[12-Jun-2026 11:57:43 Europe/Madrid] PHP Warning:  Constant ROOT_DIR already defined in /var/www/vhosts/incidencias.grupoatu.com/httpdocs/osticket/bootstrap.php on line 406
+[12-Jun-2026 11:57:43 Europe/Madrid] PHP Warning:  Constant INCLUDE_DIR already defined in /var/www/vhosts/incidencias.grupoatu.com/httpdocs/osticket/bootstrap.php on line 409
+[12-Jun-2026 09:57:43 UTC] Ticket exists? SI

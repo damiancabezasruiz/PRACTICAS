@@ -921,11 +921,7 @@ canvas{width:100%!important;height:285px!important}
                     <?php endforeach; ?>
                 </div>
 
-                <!-- Nota PNG -->
-                <div style="margin-top:16px;background:linear-gradient(135deg,#f0fdf9,#ecfdf5);border:1px solid #99f6e4;border-radius:12px;padding:12px 14px">
-                    <div style="font-size:11px;font-weight:700;color:#0f766e;margin-bottom:4px;display:flex;align-items:center;gap:5px"><i class="fas fa-lightbulb"></i> Consejo</div>
-                    <p style="font-size:11px;color:#0f766e;margin:0;line-height:1.5">Usa <strong>PNG</strong> para obtener imágenes de alta calidad de las gráficas tal como se ven en pantalla, listas para compartir o presentar.</p>
-                </div>
+              
             </div>
 
         </div><!-- /modal-body -->
