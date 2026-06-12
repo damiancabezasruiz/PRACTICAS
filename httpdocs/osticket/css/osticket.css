@@ -1,0 +1,304 @@
+/* ===================================================== */
+/* OVERLAY Y LOADING */
+/* ===================================================== */
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 1000;
+}
+
+#loading {
+    border: 1px solid #2a67ac;
+    padding: 10px 10px 10px 60px;
+    width: 300px;
+    height: 100px;
+    background: #ffffff url('../images/FhHRx-Spinner.gif') 10px 50% no-repeat;
+    position: fixed;
+    display: none;
+    z-index: 3000;
+}
+
+#loading h4 {
+    margin: 3px 0 0 0;
+    padding: 0;
+    color: #d80;
+}
+
+
+/* ===================================================== */
+/* GENERAL */
+/* ===================================================== */
+
+input.dp {
+    width: 10em;
+}
+
+.ui-datepicker-trigger {
+    display:inline-block;
+    border:0;
+    padding:0;
+    margin-left:2px;
+    position:relative;
+    top:-2px;
+    width:16px;
+    height:16px;
+}
+
+div.section-break {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    padding-top: 0.8em !important;
+    border-top: 1px solid #ccc;
+}
+
+
+/* ===================================================== */
+/* BOTONES CORPORATIVOS */
+/* ===================================================== */
+
+.pull-right {
+    display: flex !important;
+    gap: 8px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.pull-right .action-button {
+    padding: 0px 5px !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    transition: all 0.25s ease !important;
+    cursor: pointer !important;
+    border: none !important;
+}
+
+.pull-right .btn-download {
+    background: linear-gradient(135deg, #0b3d91, #1f6feb) !important;
+    color: #ffffff !important;
+}
+
+.pull-right .btn-edit {
+    background: linear-gradient(135deg, #e67e22, #f39c12) !important;
+    color: #ffffff !important;
+}
+
+
+/* ===================================================== */
+/* TABLAS DEL TICKET */
+/* ===================================================== */
+
+#ticketInfo .infoTable,
+#ticketInfo .custom-data {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #cfcfcf;
+    margin-bottom: 15px;
+}
+
+#ticketInfo .infoTable th,
+#ticketInfo .custom-data th {
+    background-color: #0b3d91;
+    color: #ffffff;
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+    border: 1px solid #cfcfcf;
+    width: 30%;
+}
+
+#ticketInfo .infoTable td,
+#ticketInfo .custom-data td {
+    padding: 8px 10px;
+    border: 1px solid #cfcfcf;
+    background-color: #ffffff;
+}
+
+#ticketInfo .infoTable tr:nth-child(even) td,
+#ticketInfo .custom-data tr:nth-child(even) td {
+    background-color: #f5f8fc;
+}
+
+
+/* ===================================================== */
+/* MENÚ SUPERIOR */
+/* ===================================================== */
+
+#nav,
+#nav ul,
+#container ul:first-of-type {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+#nav {
+    text-align: center !important;
+    margin-top: 50px !important;
+}
+
+#nav li {
+    display: inline-block !important;
+    float: none !important;
+}
+
+#nav a {
+    display: inline-block;
+    padding: 10px 28px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #0b3d91, #1f6feb);
+    color: #ffffff !important;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+#nav a:hover {
+  
+}
+
+
+/* ===================================================== */
+/* LOGO */
+/* ===================================================== */
+
+#header img,
+#logo img {
+    display: block;
+    margin: 0 auto 20px auto !important;
+}
+
+
+/* ===================================================== */
+/* BLOQUE BIENVENIDA */
+/* ===================================================== */
+
+#content > div:first-of-type {
+    max-width: 750px;
+    margin: 20px auto 30px auto !important;
+    padding: 22px 28px;
+    background: #f7f9fd;
+    border: 1px solid #d6e1f5;
+    border-radius: 14px;
+}
+
+#content > div:first-of-type h1,
+#content > div:first-of-type h2 {
+    color: #0b3d91;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+#content > div:first-of-type p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444;
+}
+
+
+/* ===================================================== */
+/* EMAIL / CLIENTE */
+/* ===================================================== */
+
+.email-client-wrapper {
+    display: flex;
+    gap: 80px;
+    padding-left: 20px;
+}
+
+.email-block,
+.client-block {
+    white-space: nowrap;
+}
+
+
+/* ===================================================== */
+/* FORMULARIO DINÁMICO – 3 COLUMNAS OCUPANDO TODO */
+/* ===================================================== */
+
+#dynamic-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#dynamic-form .field {
+    width: 32%;
+    margin-bottom: 18px;
+}
+
+#dynamic-form input[type="text"],
+#dynamic-form select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#dynamic-form textarea {
+    width: 100%;
+}
+.warning-box-full {
+    color: #000000 !important;
+}
+
+
+/* Encabezado del ticket alineado */
+#content h1 {
+    display: flex;
+    align-items: center;
+    font-size: 26px !important;
+    font-weight: 700 !important;
+}
+
+/* Número del ticket (#145438) */
+#content h1 a,
+#content h1 span {
+    font-size: 26px !important;
+    font-weight: 700 !important;
+    margin-left: 18px; /* separación tipo 3 espacios */
+}
+
+/* Botones a la derecha */
+.pull-right {
+    margin-left: auto !important;
+}
+
+#ticketForm .thread-body.bleed h2 {
+    color: #169bd5;
+}
+body.modo-triple {
+ height: auto !important;
+ overflow-x: hidden !important;
+ overflow-y: visible !important;
+}
+#container {
+    min-width: 0 !important;
+}
+/* 1. Forzar al HTML y Body a ser elásticos */
+html, body {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow: visible !important;
+}
+
+/* 2. Liberar el contenedor que está atrapando el scroll */
+#container {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+    display: block !important;
+}
+
+/* 3. Asegurar que el contenido no se corte */
+#content {
+    height: auto !important;
+    overflow: visible !important;
+}

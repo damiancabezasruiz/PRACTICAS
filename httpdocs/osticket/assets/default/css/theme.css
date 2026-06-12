@@ -1,0 +1,179 @@
+/* ============================================================
+   ESTILO MODERNO - ANCHO EQUILIBRADO (940px)
+   ============================================================ */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #000099; /* Volvemos a tu azul corporativo de fondo */
+    color: #334155;
+}
+
+/* --- Contenedor con ancho intermedio --- */
+#container {
+    width: 95%;
+    max-width: 940px; /* Reducido para que no sea tan ancho */
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: none;
+    overflow: hidden;
+}
+
+#content {
+    padding: 35px 45px;
+    height: auto !important;
+    min-height: auto !important;
+}
+
+/* --- Títulos y Textos --- */
+h1 {
+    color: #000099;
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+p {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* --- Formulario más limpio --- */
+#ticketForm table {
+    width: 100%;
+    border-spacing: 0 8px; /* Espacio sutil entre filas */
+}
+
+#ticketForm td {
+    padding: 5px 10px;
+}
+
+/* Etiquetas (Labels) */
+#ticketForm label {
+    font-weight: 700;
+    font-size: 12px;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Inputs y Selects modernos */
+input[type="text"], 
+input[type="email"], 
+select, 
+textarea {
+    width: 100% !important;
+    padding: 10px 14px !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 10px !important; /* Bordes redondeados modernos */
+    background: #fcfcfd !important;
+    font-size: 14px !important;
+    transition: all 0.2s ease !important;
+    box-sizing: border-box !important;
+}
+
+/* Efecto Focus */
+input:focus, select:focus, textarea:focus {
+    border-color: #2563eb !important;
+    background: #fff !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+    outline: none !important;
+}
+
+
+
+/* --- Botones --- */
+/* 1. ALINEAR LOS PÁRRAFOS UNO AL LADO DEL OTRO Y BAJARLOS */
+/* 1. LA CAJA: Que crezca y no corte los botones */
+
+/* 1. OCULTAR BOTÓN "INICIO" SOLO EN LA HOME */
+/* Como tiene la clase 'home', lo borramos solo dentro de #landing_page */
+/* 1. OCULTAR BOTÓN "INICIO" SOLO CUANDO ESTAMOS EN LA HOME */
+/* En osTicket, el botón de inicio solo es 'active' cuando estás en la home */
+#nav li.active.home, 
+#nav li.home.active, 
+#header .home.active,
+a.home.active { 
+    display: none !important; 
+}
+
+
+
+
+
+#landing_page {
+    height: auto !important;
+    padding-bottom: 80px !important; /* Espacio extra abajo */
+    overflow: visible !important;
+}
+
+/* 2. EL TEXTO: Subirlo hacia arriba */
+strong {
+    display: block !important;
+    margin-top: -50px !important; 
+    text-align: center !important;
+	   font-size: 1.2em;
+}
+
+/* 3. BOTONES: Gemelos, fijos y sin animaciones de ningún tipo */
+.blue.button, 
+.green.button,
+.blue.button:hover,
+.green.button:hover,
+.blue.button:active, 
+.green.button:active,
+.blue.button:focus,
+.green.button:focus {
+    /* RESET DE MOVIMIENTO: Aquí es donde evitamos que bajen al hacer clic */
+    transform: none !important;      
+    transition: none !important;      /* Quita cualquier animación suave */
+    position: relative !important;
+    top: 60px !important;             /* Mantiene siempre la misma altura */
+    text-decoration: none !important;
+    outline: none !important;
+    box-shadow: none !important;      /* Quita sombras que cambian al clicar */
+    
+    /* DISEÑO GEMELO */
+    display: inline-block !important;
+    white-space: nowrap !important;    /* Texto en una sola línea (Verde = Azul) */
+    border: none !important;
+    border-radius: 50px !important;    /* Forma de cápsula */
+    padding: 12px 30px !important;
+    min-width: 210px !important;       /* Misma anchura */
+    font-size: 15px !important;
+    font-weight: bold !important;
+    color: #ffffff !important;
+    left: 50% !important;
+}
+
+/* 4. POSICIÓN PARA CENTRAR EL BLOQUE */
+.blue.button {
+    background: #0000cc !important;
+    margin-left: -120px !important; 
+}
+
+.green.button {
+    background: #237a34 !important;
+    margin-left: 10px !important;
+}
+
+/* 5. COLORES (Hover y Clic) */
+.blue.button:hover, .blue.button:active { background: #0000ff !important; }
+.green.button:hover, .green.button:active { background: #1a6027 !important; }
+
+/* 6. ANULAR PÁRRAFOS */
+p { display: inline !important; }
+
+
+
+/* --- Ajuste final para quitar el scroll eterno --- */
+#container, #content {
+    height: auto !important;
+    overflow: visible !important;
+}

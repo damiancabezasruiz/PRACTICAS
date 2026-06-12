@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Cuestionarios ATU</title>
+    <link rel="icon" type="image/png" href="../img/logo-atu.png">
+    <link rel="shortcut icon" type="image/png" href="../img/logo-atu.png">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgba(0, 0, 153, 1);
+            margin: 0;
+            padding: 14px;
+            color: #1f2937;
+        }
+
+        .contenedor {
+            max-width: 1180px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+            overflow: hidden;
+        }
+
+        .cabecera {
+            padding: 14px 20px 10px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+            background: linear-gradient(to bottom, #ffffff, #f8fafc);
+        }
+
+        .cabecera img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .cabecera-texto {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .menu {
+            display: flex;
+            gap: 12px;
+            padding: 14px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            background: #f8fafc;
+            flex-wrap: wrap;
+        }
+
+        .menu button {
+            border: none;
+            padding: 11px 18px;
+            border-radius: 10px;
+            background: #e5e7eb;
+            color: #111827;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.2s ease;
+        }
+
+        .menu button.activo {
+            background: #2563eb;
+            color: white;
+        }
+
+        .contenido {
+            padding: 22px;
+        }
+
+        .cabecera-seccion {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cabecera-seccion h2 {
+            margin: 0 0 6px 0;
+            font-size: 24px;
+            color: #111827;
+        }
+
+        .cabecera-seccion p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 14px;
+            max-width: 780px;
+        }
+
+        .boton-principal,
+        .boton-secundario,
+        .boton-peligro {
+            border: none;
+            padding: 10px 15px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: 0.2s ease;
+        }
+
+        .boton-principal {
+            background: #2563eb;
+            color: white;
+        }
+
+        .boton-principal:hover {
+            background: #1d4ed8;
+        }
+
+        .boton-secundario {
+            background: #eef2f7;
+            color: #111827;
+        }
+
+        .boton-secundario:hover {
+            background: #dbe3ec;
+        }
+
+        .boton-peligro {
+            background: #dc2626;
+            color: white;
+        }
+
+        .boton-peligro:hover {
+            background: #b91c1c;
+        }
+
+        .subtitulo-bloque {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .lista {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .item {
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            background: #ffffff;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: 0.2s ease;
+        }
+
+        .item.oculto-item {
+            opacity: 0.50;
+            border-style: dashed;
+            background: #fafafa;
+        }
+
+        .item-info {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .item-cabecera {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            padding: 16px;
+            flex-wrap: wrap;
+        }
+
+        .item-info h3 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            color: #111827;
+        }
+
+        .meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 6px 11px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: bold;
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .tag.activo {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .tag.oculto {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .tag.condicional {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .acciones {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .editor,
+        .visor {
+            display: none;
+            border-top: 1px solid #e5e7eb;
+            background: #f8fafc;
+            padding: 18px;
+        }
+
+        .editor.activo,
+        .visor.activo {
+            display: block;
+        }
+
+        .editor h4,
+        .visor h4 {
+            margin: 0 0 16px 0;
+            font-size: 18px;
+            color: #111827;
+        }
+
+        .fila {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .grupo {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #111827;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background: white;
+        }
+
+        .checks label {
+            display: inline-block;
+            margin-right: 18px;
+            font-weight: normal;
+        }
+
+        .oculto-seccion {
+            display: none;
+        }
+
+        .bloque-opciones {
+            margin-top: 18px;
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 18px;
+        }
+
+        .bloque-opciones h5 {
+            margin: 0 0 12px 0;
+            font-size: 15px;
+            color: #111827;
+        }
+
+        .opcion-item {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .opcion-item.oculta-opcion {
+            opacity: 0.50;
+            border-style: dashed;
+            background: #fafafa;
+        }
+
+        .opcion-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .opcion-nombre {
+            font-weight: bold;
+            font-size: 14px;
+            color: #111827;
+        }
+
+        .opcion-valor {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .mini-acciones {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .mini-acciones button {
+            border: none;
+            padding: 7px 10px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .mini-editar {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .mini-ocultar {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .mini-eliminar {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .subeditor {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #d1d5db;
+        }
+
+        .subeditor.activo {
+            display: block;
+        }
+
+        .panel-lista {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .panel-lista h4 {
+            margin: 0 0 14px 0;
+            font-size: 17px;
+            color: #111827;
+        }
+
+        .contenido-lista {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .chip {
+            background: #eef2f7;
+            color: #111827;
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .mensaje-ayuda {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <div class="cabecera">
+            <img src="../img/logo-atu.png" alt="Logo Grupo Atu">
+            <div class="cabecera-texto">Panel de configuración del cuestionario</div>
+        </div>
+
+        <div class="menu">
+            <button id="btn-campos" class="activo" onclick="mostrarSeccion('campos')">Campos base</button>
+            <button id="btn-listas" onclick="mostrarSeccion('listas')">Listas desplegables</button>
+        </div>
+
+        <div class="contenido">
+
+            <!-- CAMPOS BASE -->
+            <div id="seccion-campos">
+                <div class="cabecera-seccion">
+                    <div>
+                        <h2>Campos del cuestionario</h2>
+                        <p>Revisa y prueba el comportamiento de los campos. Los cambios se guardan temporalmente en el navegador.</p>
+                    </div>
+                    <button class="boton-principal" onclick="toggleEditor('nuevo-campo-editor')">+ Añadir nuevo campo</button>
+                </div>
+
+                <div class="mensaje-ayuda">
+                    Desde aquí puedes crear nuevos campos del cuestionario y editar los ya existentes de forma sencilla.
+                </div>
+
+                <div id="nuevo-campo-editor" class="editor">
+                    <h4>Nuevo campo</h4>
+
+                    <div class="fila">
+                        <div class="grupo">
+                            <label>Nombre del campo</label>
+                            <input type="text" id="nuevoCampoNombre">
+                        </div>
+                        <div class="grupo">
+                            <label>Nombre interno</label>
+                            <input type="text" id="nuevoCampoInterno">
+                        </div>
+                    </div>
+
+                    <div class="fila">
+                        <div class="grupo">
+                            <label>Tipo</label>
+                            <select id="nuevoCampoTipo">
+                                <option>Texto</option>
+                                <option>Área de texto</option>
+                                <option>Desplegable</option>
+                                <option>Archivo</option>
+                                <option>Fecha</option>
+                                <option>Número</option>
+                            </select>
+                        </div>
+                        <div class="grupo">
+                            <label>Posición en el formulario</label>
+                            <input type="number" id="nuevoCampoPosicion">
+                        </div>
+                    </div>
+
+                    <div class="fila">
+                        <div class="grupo">
+                            <label>Texto de ayuda dentro del campo</label>
+                            <input type="text" id="nuevoCampoAyuda">
+                        </div>
+                        <div class="grupo">
+                            <label>Estado</label>
+                            <select id="nuevoCampoEstado">
+                                <option>Activo</option>
+                                <option>Oculto</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="fila">
+                        <div class="grupo checks">
+                            <label><input type="checkbox" id="nuevoCampoObligatorio"> Obligatorio</label>
+                            <label><input type="checkbox" id="nuevoCampoVisible" checked> Visible</label>
+                        </div>
+                    </div>
+
+                    <div class="acciones">
+                        <button class="boton-principal" onclick="agregarCampo()">Guardar campo</button>
+                        <button class="boton-secundario" onclick="toggleEditor('nuevo-campo-editor')">Cancelar</button>
+                    </div>
+                </div>
+
+                <div class="lista" id="lista-campos"></div>
+            </div>
+
+            <!-- LISTAS DESPLEGABLES -->
+            <div id="seccion-listas" class="oculto-seccion">
+                <div class="cabecera-seccion">
+                    <div>
+                        <h2>Listas desplegables</h2>
+                        <p>Consulta el contenido de cada lista, edítala dentro de la misma página y mantén abierta la edición mientras trabajas.</p>
+                    </div>
+                </div>
+
+                <div class="mensaje-ayuda">
+                    Aquí puedes consultar y gestionar las opciones de los campos desplegables, como Plan, Sector, Tutor, Empresa o Incidencia.
+                </div>
+
+                <div class="lista" id="lista-desplegables"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'atu_form_config_v4';
+        const STORAGE_TAB = 'atu_form_tab_v4';
+        const STORAGE_OPEN_EDITORS = 'atu_open_editors_v4';
+        const STORAGE_OPEN_VISORS = 'atu_open_visors_v4';
+
+        const initialData = {
+            campos: [
+                { id: 'campo_1', nombre: 'EXPEDIENTE (DISPONIBLE EN EL ERP)', nombreInterno: 'expediente', tipo: 'Texto', obligatorio: true, visible: true, posicion: 1, ayuda: '', estado: 'Activo' },
+                { id: 'campo_2', nombre: 'PLAN (DISPONIBLE EN EL ERP)', nombreInterno: 'plan', tipo: 'Desplegable', obligatorio: true, visible: true, posicion: 2, ayuda: '', estado: 'Activo' },
+                { id: 'campo_3', nombre: 'SECTOR (DISPONIBLE EN ERP → APARTADO PLAN)', nombreInterno: 'sector', tipo: 'Desplegable', obligatorio: false, visible: true, posicion: 3, ayuda: '', estado: 'Activo' },
+                { id: 'campo_4', nombre: 'NOMBRE ALUMNO/A', nombreInterno: 'nombre_alumno', tipo: 'Texto', obligatorio: true, visible: true, posicion: 4, ayuda: '', estado: 'Activo' },
+                { id: 'campo_5', nombre: 'APELLIDO ALUMNO/A', nombreInterno: 'apellido_alumno', tipo: 'Texto', obligatorio: true, visible: true, posicion: 5, ayuda: '', estado: 'Activo' },
+                { id: 'campo_6', nombre: 'TUTOR', nombreInterno: 'tutor', tipo: 'Desplegable', obligatorio: true, visible: true, posicion: 6, ayuda: '', estado: 'Activo' },
+                { id: 'campo_7', nombre: 'EMPRESA (DISPONIBLE EN EL ERP)', nombreInterno: 'empresa', tipo: 'Desplegable', obligatorio: true, visible: true, posicion: 7, ayuda: '', estado: 'Activo' },
+                { id: 'campo_8', nombre: 'ACCIÓN', nombreInterno: 'accion', tipo: 'Texto', obligatorio: true, visible: true, posicion: 8, ayuda: '', estado: 'Activo' },
+                { id: 'campo_9', nombre: 'GRUPO (DISPONIBLE EN EL ERP)', nombreInterno: 'grupo', tipo: 'Texto', obligatorio: true, visible: true, posicion: 9, ayuda: '', estado: 'Activo' },
+                { id: 'campo_10', nombre: 'NOMBRE DEL CURSO (SIN CÓDIGO)', nombreInterno: 'nombre_curso', tipo: 'Texto', obligatorio: true, visible: true, posicion: 10, ayuda: '', estado: 'Activo' },
+                { id: 'campo_11', nombre: 'INCIDENCIA', nombreInterno: 'incidencia', tipo: 'Desplegable', obligatorio: true, visible: true, posicion: 11, ayuda: '', estado: 'Activo' },
+                { id: 'campo_12', nombre: 'MOTIVOS', nombreInterno: 'motivos', tipo: 'Área de texto', obligatorio: false, visible: true, posicion: 12, ayuda: '', estado: 'Activo' },
+                { id: 'campo_13', nombre: 'ARCHIVO', nombreInterno: 'archivo', tipo: 'Archivo', obligatorio: false, visible: true, posicion: 13, ayuda: '', estado: 'Activo' },
+                { id: 'campo_14', nombre: 'DETALLES DATOS ERRÓNEOS', nombreInterno: 'detalles_datos_erroneos', tipo: 'Desplegable', obligatorio: false, visible: true, posicion: 14, ayuda: '', estado: 'Activo' },
+                { id: 'campo_15', nombre: 'DETALLES POR LOS QUE NO QUIERE HACER EL CURSO', nombreInterno: 'detalles_no_quiere_curso', tipo: 'Desplegable', obligatorio: false, visible: true, posicion: 15, ayuda: '', estado: 'Activo' },
+                { id: 'campo_16', nombre: 'MOTIVOS DE LA DIFICULTAD', nombreInterno: 'motivos_dificultad', tipo: 'Desplegable', obligatorio: false, visible: true, posicion: 16, ayuda: '', estado: 'Activo' },
+                { id: 'campo_17', nombre: 'RAZÓN', nombreInterno: 'razon', tipo: 'Desplegable', obligatorio: false, visible: true, posicion: 17, ayuda: '', estado: 'Activo' }
+            ],
+            listas: [
+                {
+                    id: 'lista_plan',
+                    nombre: 'Plan',
+                    opciones: [
+                        { id: 'p1', texto: 'Asturias', valor: 'asturias', estado: 'Activo' },
+                        { id: 'p2', texto: 'Bonificada 2026', valor: 'bonificada_2026', estado: 'Activo' },
+                        { id: 'p3', texto: 'C. Valenciana', valor: 'c_valenciana', estado: 'Activo' },
+                        { id: 'p4', texto: 'Castilla la Mancha', valor: 'castilla_la_mancha', estado: 'Activo' },
+                        { id: 'p5', texto: 'Castilla y León', valor: 'castilla_y_leon', estado: 'Activo' },
+                        { id: 'p6', texto: 'Estatal', valor: 'estatal', estado: 'Activo' },
+                        { id: 'p7', texto: 'FORCAREM', valor: 'forcarem', estado: 'Activo' }
+                    ]
+                },
+                {
+                    id: 'lista_sector',
+                    nombre: 'Sector',
+                    opciones: [
+                        { id: 's1', texto: 'AGROALIMENTARIA 2025', valor: 'agroalimentaria_2025', estado: 'Activo' },
+                        { id: 's2', texto: 'C-2024 (empleados)', valor: 'c_2024_empleados', estado: 'Activo' },
+                        { id: 's3', texto: 'CERÁMICA 2025', valor: 'ceramica_2025', estado: 'Activo' },
+                        { id: 's4', texto: 'COMERCIO 2024', valor: 'comercio_2024', estado: 'Activo' },
+                        { id: 's5', texto: 'CONSTRUCCIÓN 2025', valor: 'construccion_2025', estado: 'Activo' },
+                        { id: 's6', texto: 'FC CYL 2025', valor: 'fc_cyl_2025', estado: 'Activo' },
+                        { id: 's7', texto: 'METAL 2025', valor: 'metal_2025', estado: 'Activo' },
+                        { id: 's8', texto: 'NC-2024/25 (desempleados)', valor: 'nc_2024_25_desempleados', estado: 'Activo' },
+                        { id: 's9', texto: 'SANIDAD ESPECIAL INTERÉS 2024', valor: 'sanidad_especial_interes_2024', estado: 'Activo' },
+                        { id: 's10', texto: 'SANIDAD SECTORIAL 2024', valor: 'sanidad_sectorial_2024', estado: 'Activo' },
+                        { id: 's11', texto: 'SERVICIOS OTROS 2024', valor: 'servicios_otros_2024', estado: 'Activo' }
+                    ]
+                },
+                {
+                    id: 'lista_tutor',
+                    nombre: 'Tutor',
+                    opciones: [
+                        { id: 't1', texto: 'Ada Fournier', valor: 'ada_fournier', estado: 'Activo' },
+                        { id: 't2', texto: 'Adaya Castro', valor: 'adaya_castro', estado: 'Activo' },
+                        { id: 't3', texto: 'Alba Rodríguez', valor: 'alba_rodriguez', estado: 'Activo' },
+                        { id: 't4', texto: 'Alberto Aguera Jimenez', valor: 'alberto_aguera_jimenez', estado: 'Activo' },
+                        { id: 't5', texto: 'Alberto Hernández García', valor: 'alberto_hernandez_garcia', estado: 'Activo' },
+                        { id: 't6', texto: 'Alberto Lopez', valor: 'alberto_lopez', estado: 'Activo' },
+                        { id: 't7', texto: 'Alberto Pérez García', valor: 'alberto_perez_garcia', estado: 'Activo' },
+                        { id: 't8', texto: 'Alberto Ruiz Cubillo', valor: 'alberto_ruiz_cubillo', estado: 'Activo' },
+                        { id: 't9', texto: 'Alberto Sánchez Palomares', valor: 'alberto_sanchez_palomares', estado: 'Activo' },
+                        { id: 't10', texto: 'Alberto Verdú Trigueros', valor: 'alberto_verdu_trigueros', estado: 'Activo' },
+                        { id: 't11', texto: 'Alexandre Hermida', valor: 'alexandre_hermida', estado: 'Activo' },
+                        { id: 't12', texto: 'Álvaro Iglesias Arteaga', valor: 'alvaro_iglesias_arteaga', estado: 'Activo' },
+                        { id: 't13', texto: 'Amparo Úbeda', valor: 'amparo_ubeda', estado: 'Activo' }
+                    ]
+                },
+                {
+                    id: 'lista_empresa',
+                    nombre: 'Empresa',
+                    opciones: [
+                        { id: 'e1', texto: 'ASOCIACIÓN SOCIOCULTURAL DE CLUB AVENTURA ATU', valor: 'asociacion_sociocultural_club_aventura_atu', estado: 'Activo' },
+                        { id: 'e2', texto: 'ATU ASESORIA DE FORMACIÓN, S.L.', valor: 'atu_asesoria_de_formacion_sl', estado: 'Activo' },
+                        { id: 'e3', texto: 'ATU FORMACIÓN Y DIGITALIZACIÓN, S.L.', valor: 'atu_formacion_y_digitalizacion_sl', estado: 'Activo' },
+                        { id: 'e4', texto: 'ATU SEGURIDAD Y SALUD, S.L.', valor: 'atu_seguridad_y_salud_sl', estado: 'Activo' },
+                        { id: 'e5', texto: 'ATU TECNOLOGÍA DIGITAL, S.L.', valor: 'atu_tecnologia_digital_sl', estado: 'Activo' },
+                        { id: 'e6', texto: 'BURGOS ATU, S.L.', valor: 'burgos_atu_sl', estado: 'Activo' },
+                        { id: 'e7', texto: 'EUROPEAN BUSINESS CES, S.L.', valor: 'european_business_ces_sl', estado: 'Activo' },
+                        { id: 'e8', texto: 'GRUPO ALMERÍA FORMACIÓN, S.L.', valor: 'grupo_almeria_formacion_sl', estado: 'Activo' },
+                        { id: 'e9', texto: 'INDEX BUSINESS INTELLIGENT, S.L.', valor: 'index_business_intelligent_sl', estado: 'Activo' },
+                        { id: 'e10', texto: 'TAKIN BUSINESS CONSULTING, S.L.', valor: 'takin_business_consulting_sl', estado: 'Activo' },
+                        { id: 'e11', texto: 'TIERRA MÁS ECOLÓGICA S, COOP', valor: 'tierra_mas_ecologica_s_coop', estado: 'Activo' }
+                    ]
+                },
+                {
+                    id: 'lista_incidencia',
+                    nombre: 'Incidencia',
+                    opciones: [
+                        { id: 'i1', texto: 'Datos personales / contacto erróneos', valor: 'datos_personales_contacto_erroneos', estado: 'Activo' },
+                        { id: 'i2', texto: 'Error en contenidos o pruebas de la formación', valor: 'error_contenidos_pruebas', estado: 'Activo' },
+                        { id: 'i3', texto: 'No avanza a falta de pocos días', valor: 'no_avanza_falta_pocos_dias', estado: 'Activo' },
+                        { id: 'i4', texto: 'No conectado próximo al 25% de horas o 5º día (según plan)', valor: 'no_conectado_25_o_5_dia', estado: 'Activo' },
+                        { id: 'i5', texto: 'No consigo contactar con el/la alumno/a (tras varios intentos)', valor: 'no_consigo_contactar', estado: 'Activo' },
+                        { id: 'i6', texto: 'No quiere hacer este curso', valor: 'no_quiere_hacer_este_curso', estado: 'Activo' },
+                        { id: 'i7', texto: 'Otro', valor: 'otro', estado: 'Activo' },
+                        { id: 'i8', texto: 'Problemas para conectarse (claves, no le aparece el curso, etc)', valor: 'problemas_para_conectarse', estado: 'Activo' },
+                        { id: 'i9', texto: 'Quejas hacia el tutor/a', valor: 'quejas_tutor', estado: 'Activo' }
+                    ]
+                },
+                {
+                    id: 'lista_erroneos',
+                    nombre: 'Detalles datos erróneos',
+                    opciones: [
+                        { id: 'de1', texto: 'Correo incorrecto', valor: 'correo_incorrecto', estado: 'Activo' },
+                        { id: 'de2', texto: 'Numero de telefono incorrecto', valor: 'telefono_incorrecto', estado: 'Activo' },
+                        { id: 'de3', texto: 'Otro', valor: 'otro', estado: 'Activo' }
+                    ]
+                },
+                {
+                    id: 'lista_no_curso',
+                    nombre: 'Detalles por los que no quiere hacer el curso',
+                    opciones: [
+                        { id: 'nc1', texto: 'Dificultades del alumno', valor: 'dificultades_alumno', estado: 'Activo' },
+                        { id: 'nc2', texto: 'No es lo que esperaba', valor: 'no_es_lo_que_esperaba', estado: 'Activo' },
+                        { id: 'nc3', texto: 'No se había apuntado a este curso', valor: 'no_se_habia_apuntado', estado: 'Activo' },
+                        { id: 'nc4', texto: 'Otros', valor: 'otros', estado: 'Activo' },
+                        { id: 'nc5', texto: 'Para realizar / está realizando otra formación', valor: 'otra_formacion', estado: 'Activo' },
+                        { id: 'nc6', texto: 'Por falta de tiempo, motivos familiares, laborales, de salud', valor: 'falta_tiempo', estado: 'Activo' },
+                        { id: 'nc7', texto: 'Quería otro curso', valor: 'queria_otro_curso', estado: 'Activo' },
+                        { id: 'nc8', texto: 'Se apunto hace tiempo', valor: 'se_apunto_hace_tiempo', estado: 'Activo' }
+                    ]
+                },
+                {
+                    id: 'lista_dificultad',
+                    nombre: 'Motivos de la dificultad',
+                    opciones: [
+                        { id: 'md1', texto: 'Con el idioma', valor: 'idioma', estado: 'Activo' },
+                        { id: 'md2', texto: 'No dispone de los conocimientos informáticos básicos', valor: 'sin_conocimientos_informaticos', estado: 'Activo' },
+                        { id: 'md3', texto: 'No dispone de los recursos necesarios para realizar el curso', valor: 'sin_recursos', estado: 'Activo' },
+                        { id: 'md4', texto: 'Otros', valor: 'otros', estado: 'Activo' }
+                    ]
+                },
+                {
+                    id: 'lista_razon',
+                    nombre: 'Razón',
+                    opciones: [
+                        { id: 'r1', texto: 'Contenidos complicados o demasiado básicos', valor: 'contenidos_complicados_o_basicos', estado: 'Activo' },
+                        { id: 'r2', texto: 'Otros', valor: 'otros', estado: 'Activo' },
+                        { id: 'r3', texto: 'Contenidos poco atractivos o desactualizados', valor: 'contenidos_poco_atractivos', estado: 'Activo' }
+                    ]
+                }
+            ]
+        };
+
+        let appData = loadData();
+
+        function loadData() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            return saved ? JSON.parse(saved) : initialData;
+        }
+
+        function saveData() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+        }
+
+        function saveTab(tab) {
+            localStorage.setItem(STORAGE_TAB, tab);
+        }
+
+        function getSavedTab() {
+            return localStorage.getItem(STORAGE_TAB) || 'campos';
+        }
+
+        function getOpenEditors() {
+            return JSON.parse(localStorage.getItem(STORAGE_OPEN_EDITORS) || '[]');
+        }
+
+        function saveOpenEditors(arr) {
+            localStorage.setItem(STORAGE_OPEN_EDITORS, JSON.stringify(arr));
+        }
+
+        function getOpenVisors() {
+            return JSON.parse(localStorage.getItem(STORAGE_OPEN_VISORS) || '[]');
+        }
+
+        function saveOpenVisors(arr) {
+            localStorage.setItem(STORAGE_OPEN_VISORS, JSON.stringify(arr));
+        }
+
+        function isEditorOpen(id) {
+            return getOpenEditors().includes(id);
+        }
+
+        function isVisorOpen(id) {
+            return getOpenVisors().includes(id);
+        }
+
+        function setEditorState(id, open) {
+            let editors = getOpenEditors();
+            if (open && !editors.includes(id)) editors.push(id);
+            if (!open) editors = editors.filter(e => e !== id);
+            saveOpenEditors(editors);
+        }
+
+        function setVisorState(id, open) {
+            let visors = getOpenVisors();
+            if (open && !visors.includes(id)) visors.push(id);
+            if (!open) visors = visors.filter(v => v !== id);
+            saveOpenVisors(visors);
+        }
+
+        function renderCampos() {
+            const container = document.getElementById('lista-campos');
+            container.innerHTML = '';
+
+            appData.campos.forEach(campo => {
+                const editorId = 'editor_' + campo.id;
+                const oculto = campo.estado === 'Oculto';
+
+                const div = document.createElement('div');
+                div.className = 'item' + (oculto ? ' oculto-item' : '');
+
+                div.innerHTML = `
+                    <div class="item-cabecera">
+                        <div class="item-info">
+                            <h3>${campo.nombre}</h3>
+                            <div class="meta">
+                                <span class="tag">${campo.tipo || 'Texto'}</span>
+                                <span class="tag">${campo.obligatorio ? 'Obligatorio' : 'No obligatorio'}</span>
+                                <span class="tag ${oculto ? 'oculto' : 'activo'}">${campo.estado || 'Activo'}</span>
+                            </div>
+                        </div>
+                        <div class="acciones">
+                            <button class="boton-secundario" onclick="toggleEditor('${editorId}')">Editar</button>
+                            <button class="boton-secundario" onclick="toggleOcultarCampo('${campo.id}')">${oculto ? 'Mostrar' : 'Ocultar'}</button>
+                            <button class="boton-peligro" onclick="eliminarCampo('${campo.id}')">Eliminar</button>
+                        </div>
+                    </div>
+
+                    <div id="${editorId}" class="editor ${isEditorOpen(editorId) ? 'activo' : ''}">
+                        <h4>Editar campo: ${campo.nombre}</h4>
+
+                        <div class="fila">
+                            <div class="grupo">
+                                <label>Nombre del campo</label>
+                                <input type="text" id="nombre_${campo.id}" value="${campo.nombre}">
+                            </div>
+                            <div class="grupo">
+                                <label>Nombre interno</label>
+                                <input type="text" id="interno_${campo.id}" value="${campo.nombreInterno || ''}">
+                            </div>
+                        </div>
+
+                        <div class="fila">
+                            <div class="grupo">
+                                <label>Tipo</label>
+                                <select id="tipo_${campo.id}">
+                                    <option ${campo.tipo === 'Texto' ? 'selected' : ''}>Texto</option>
+                                    <option ${campo.tipo === 'Área de texto' ? 'selected' : ''}>Área de texto</option>
+                                    <option ${campo.tipo === 'Desplegable' ? 'selected' : ''}>Desplegable</option>
+                                    <option ${campo.tipo === 'Archivo' ? 'selected' : ''}>Archivo</option>
+                                    <option ${campo.tipo === 'Fecha' ? 'selected' : ''}>Fecha</option>
+                                    <option ${campo.tipo === 'Número' ? 'selected' : ''}>Número</option>
+                                </select>
+                            </div>
+                            <div class="grupo">
+                                <label>Posición en el formulario</label>
+                                <input type="number" id="posicion_${campo.id}" value="${campo.posicion || ''}">
+                            </div>
+                        </div>
+
+                        <div class="fila">
+                            <div class="grupo">
+                                <label>Texto de ayuda dentro del campo</label>
+                                <input type="text" id="ayuda_${campo.id}" value="${campo.ayuda || ''}">
+                            </div>
+                            <div class="grupo">
+                                <label>Estado</label>
+                                <select id="estado_${campo.id}">
+                                    <option ${campo.estado === 'Activo' ? 'selected' : ''}>Activo</option>
+                                    <option ${campo.estado === 'Oculto' ? 'selected' : ''}>Oculto</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="fila checks">
+                            <label><input type="checkbox" id="obligatorio_${campo.id}" ${campo.obligatorio ? 'checked' : ''}> Obligatorio</label>
+                            <label><input type="checkbox" id="visible_${campo.id}" ${campo.visible !== false ? 'checked' : ''}> Visible</label>
+                        </div>
+
+                        <div class="acciones">
+                            <button class="boton-principal" onclick="guardarCampo('${campo.id}')">Guardar cambios</button>
+                            <button class="boton-secundario" onclick="toggleEditor('${editorId}')">Cerrar</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderListas() {
+            const container = document.getElementById('lista-desplegables');
+            container.innerHTML = '';
+
+            appData.listas.forEach(lista => {
+                const visorId = 'visor_' + lista.id;
+                const editorId = 'editor_' + lista.id;
+
+                const chips = lista.opciones.map(op => `<span class="chip">${op.texto}</span>`).join('');
+
+                const opcionesHtml = lista.opciones.map(op => {
+                    const subId = `sub_${lista.id}_${op.id}`;
+                    const oculta = op.estado === 'Oculto';
+
+                    return `
+                        <div class="opcion-item ${oculta ? 'oculta-opcion' : ''}">
+                            <div class="opcion-top">
+                                <div>
+                                    <div class="opcion-nombre">${op.texto}</div>
+                                    <div class="opcion-valor">${op.valor}</div>
+                                </div>
+                                <div class="mini-acciones">
+                                    <button class="mini-editar" onclick="toggleSubEditor('${subId}')">Editar</button>
+                                    <button class="mini-ocultar" onclick="toggleOcultarOpcion('${lista.id}', '${op.id}', '${editorId}')">${oculta ? 'Mostrar' : 'Ocultar'}</button>
+                                    <button class="mini-eliminar" onclick="eliminarOpcion('${lista.id}', '${op.id}', '${editorId}')">Eliminar</button>
+                                </div>
+                            </div>
+
+                            <div id="${subId}" class="subeditor">
+                                <div class="fila">
+                                    <div class="grupo">
+                                        <label>Texto visible</label>
+                                        <input type="text" id="texto_${lista.id}_${op.id}" value="${op.texto}">
+                                    </div>
+                                    <div class="grupo">
+                                        <label>Valor interno</label>
+                                        <input type="text" id="valor_${lista.id}_${op.id}" value="${op.valor}">
+                                    </div>
+                                </div>
+                                <div class="acciones">
+                                    <button class="boton-principal" onclick="guardarOpcion('${lista.id}', '${op.id}', '${editorId}')">Guardar cambios</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.innerHTML = `
+                    <div class="item-cabecera">
+                        <div class="item-info">
+                            <h3>Lista: ${lista.nombre}</h3>
+                            <div class="subtitulo-bloque">Gestión de valores del desplegable</div>
+                            <div class="meta">
+                                <span class="tag">${lista.opciones.length} opciones</span>
+                                <span class="tag activo">Activa</span>
+                            </div>
+                        </div>
+                        <div class="acciones">
+                            <button class="boton-secundario" onclick="toggleVisor('${visorId}')">Ver contenido</button>
+                            <button class="boton-principal" onclick="toggleEditor('${editorId}')">Editar lista</button>
+                        </div>
+                    </div>
+
+                    <div id="${visorId}" class="visor ${isVisorOpen(visorId) ? 'activo' : ''}">
+                        <h4>Contenido de la lista: ${lista.nombre}</h4>
+                        <div class="contenido-lista">${chips}</div>
+                    </div>
+
+                    <div id="${editorId}" class="editor ${isEditorOpen(editorId) ? 'activo' : ''}">
+                        <h4>Editar lista: ${lista.nombre}</h4>
+
+                        <div class="bloque-opciones">
+                            <h5>Opciones actuales</h5>
+                            ${opcionesHtml}
+                        </div>
+
+                        <div class="panel-lista">
+                            <h4>Añadir nueva opción a la lista</h4>
+                            <div class="fila">
+                                <div class="grupo">
+                                    <label>Texto visible</label>
+                                    <input type="text" id="nuevoTexto_${lista.id}">
+                                </div>
+                                <div class="grupo">
+                                    <label>Valor interno</label>
+                                    <input type="text" id="nuevoValor_${lista.id}">
+                                </div>
+                            </div>
+                            <div class="acciones">
+                                <button class="boton-principal" onclick="agregarOpcion('${lista.id}', '${editorId}')">Añadir opción</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function agregarCampo() {
+            const nombre = document.getElementById('nuevoCampoNombre').value.trim();
+            const interno = document.getElementById('nuevoCampoInterno').value.trim();
+            const tipo = document.getElementById('nuevoCampoTipo').value;
+            const posicion = document.getElementById('nuevoCampoPosicion').value.trim();
+            const ayuda = document.getElementById('nuevoCampoAyuda').value.trim();
+            const estado = document.getElementById('nuevoCampoEstado').value;
+            const obligatorio = document.getElementById('nuevoCampoObligatorio').checked;
+            const visible = document.getElementById('nuevoCampoVisible').checked;
+
+            if (!nombre) {
+                alert('Introduce el nombre del campo');
+                return;
+            }
+
+            appData.campos.push({
+                id: 'campo_' + Date.now(),
+                nombre: nombre,
+                nombreInterno: interno,
+                tipo: tipo,
+                posicion: posicion,
+                ayuda: ayuda,
+                obligatorio: obligatorio,
+                visible: visible,
+                estado: estado
+            });
+
+            saveData();
+            renderCampos();
+
+            document.getElementById('nuevoCampoNombre').value = '';
+            document.getElementById('nuevoCampoInterno').value = '';
+            document.getElementById('nuevoCampoPosicion').value = '';
+            document.getElementById('nuevoCampoAyuda').value = '';
+            document.getElementById('nuevoCampoEstado').value = 'Activo';
+            document.getElementById('nuevoCampoObligatorio').checked = false;
+            document.getElementById('nuevoCampoVisible').checked = true;
+
+            toggleEditor('nuevo-campo-editor');
+        }
+
+        function guardarCampo(id) {
+            const campo = appData.campos.find(c => c.id === id);
+            if (!campo) return;
+
+            campo.nombre = document.getElementById('nombre_' + id).value;
+            campo.nombreInterno = document.getElementById('interno_' + id).value;
+            campo.tipo = document.getElementById('tipo_' + id).value;
+            campo.posicion = document.getElementById('posicion_' + id).value;
+            campo.ayuda = document.getElementById('ayuda_' + id).value;
+            campo.estado = document.getElementById('estado_' + id).value;
+            campo.obligatorio = document.getElementById('obligatorio_' + id).checked;
+            campo.visible = document.getElementById('visible_' + id).checked;
+
+            saveData();
+            setEditorState('editor_' + id, true);
+            renderCampos();
+        }
+
+        function toggleOcultarCampo(id) {
+            const campo = appData.campos.find(c => c.id === id);
+            if (!campo) return;
+
+            campo.estado = campo.estado === 'Activo' ? 'Oculto' : 'Activo';
+            saveData();
+            renderCampos();
+        }
+
+        function eliminarCampo(id) {
+            if (!confirm('¿Seguro que quieres eliminar este campo?')) return;
+            appData.campos = appData.campos.filter(c => c.id !== id);
+            saveData();
+            renderCampos();
+        }
+
+        function agregarOpcion(listaId, editorId) {
+            const lista = appData.listas.find(l => l.id === listaId);
+            if (!lista) return;
+
+            const texto = document.getElementById('nuevoTexto_' + listaId).value.trim();
+            const valor = document.getElementById('nuevoValor_' + listaId).value.trim();
+
+            if (!texto || !valor) {
+                alert('Rellena el texto visible y el valor interno');
+                return;
+            }
+
+            lista.opciones.push({
+                id: 'op_' + Date.now(),
+                texto,
+                valor,
+                estado: 'Activo'
+            });
+
+            saveData();
+            setEditorState(editorId, true);
+            renderListas();
+        }
+
+        function guardarOpcion(listaId, opcionId, editorId) {
+            const lista = appData.listas.find(l => l.id === listaId);
+            if (!lista) return;
+
+            const opcion = lista.opciones.find(o => o.id === opcionId);
+            if (!opcion) return;
+
+            opcion.texto = document.getElementById(`texto_${listaId}_${opcionId}`).value;
+            opcion.valor = document.getElementById(`valor_${listaId}_${opcionId}`).value;
+
+            saveData();
+            setEditorState(editorId, true);
+            renderListas();
+        }
+
+        function toggleOcultarOpcion(listaId, opcionId, editorId) {
+            const lista = appData.listas.find(l => l.id === listaId);
+            if (!lista) return;
+
+            const opcion = lista.opciones.find(o => o.id === opcionId);
+            if (!opcion) return;
+
+            opcion.estado = opcion.estado === 'Activo' ? 'Oculto' : 'Activo';
+
+            saveData();
+            setEditorState(editorId, true);
+            renderListas();
+        }
+
+        function eliminarOpcion(listaId, opcionId, editorId) {
+            if (!confirm('¿Seguro que quieres eliminar esta opción?')) return;
+
+            const lista = appData.listas.find(l => l.id === listaId);
+            if (!lista) return;
+
+            lista.opciones = lista.opciones.filter(o => o.id !== opcionId);
+
+            saveData();
+            setEditorState(editorId, true);
+            renderListas();
+        }
+
+        function mostrarSeccion(seccion) {
+            const seccionCampos = document.getElementById('seccion-campos');
+            const seccionListas = document.getElementById('seccion-listas');
+
+            const btnCampos = document.getElementById('btn-campos');
+            const btnListas = document.getElementById('btn-listas');
+
+            seccionCampos.classList.add('oculto-seccion');
+            seccionListas.classList.add('oculto-seccion');
+
+            btnCampos.classList.remove('activo');
+            btnListas.classList.remove('activo');
+
+            if (seccion === 'campos') {
+                seccionCampos.classList.remove('oculto-seccion');
+                btnCampos.classList.add('activo');
+            } else if (seccion === 'listas') {
+                seccionListas.classList.remove('oculto-seccion');
+                btnListas.classList.add('activo');
+            }
+
+            saveTab(seccion);
+        }
+
+        function toggleEditor(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const abierto = !el.classList.contains('activo');
+            el.classList.toggle('activo');
+            setEditorState(id, abierto);
+        }
+
+        function toggleVisor(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const abierto = !el.classList.contains('activo');
+            el.classList.toggle('activo');
+            setVisorState(id, abierto);
+        }
+
+        function toggleSubEditor(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.classList.toggle('activo');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            renderCampos();
+            renderListas();
+            mostrarSeccion(getSavedTab());
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+/* ===================================================== */
+/* ================== GENERAL ========================== */
+/* ===================================================== */
+
+input.dp {
+    width: 10em;
+}
+
+.ui-datepicker-trigger {
+    display:inline-block;
+    border:0;
+    padding:0;
+    margin-left:2px;
+    position:relative;
+    top:-2px;
+    width:16px;
+    height:16px;
+}
+
+div.section-break {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    padding-top: 0.8em !important;
+    border-top: 1px solid #ccc;
+}
+
+
+/* ===================================================== */
+/* ============ BOTONES CORPORATIVOS BASE ============== */
+/* ===================================================== */
+
+.pull-right {
+    display: flex !important;
+    gap: 8px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.pull-right .action-button {
+    padding: 6px 14px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    transition: all 0.25s ease !important;
+    cursor: pointer !important;
+    border: none !important;
+}
+
+
+/* ===================================================== */
+/* ================== BLOQUE BIENVENIDA ================= */
+/* ===================================================== */
+
+#content > div:first-of-type {
+    max-width: 750px;
+    margin: 20px auto 30px auto !important;
+    padding: 22px 28px;
+    background: #f7f9fd;
+    border: 1px solid #d6e1f5;
+    border-radius: 14px;
+}
+
+#content > div:first-of-type h1,
+#content > div:first-of-type h2 {
+    color: #0b3d91;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+#content > div:first-of-type p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444;
+}
+
+
+/* ===================================================== */
+/* ================= EMAIL / CLIENTE ==================== */
+/* ===================================================== */
+
+.email-client-wrapper {
+    display: flex;
+    gap: 80px;
+    padding-left: 20px;
+}
+
+.email-block,
+.client-block {
+    white-space: nowrap;
+}
+
+
+/* ===================================================== */
+/* ============ FORMULARIO DINÁMICO ===================== */
+/* ===================================================== */
+
+#dynamic-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#dynamic-form .field {
+    width: 32%;
+    margin-bottom: 18px;
+}
+
+#dynamic-form input[type="text"],
+#dynamic-form select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#dynamic-form textarea {
+    width: 100%;
+}
+
+
+/* ===================================================== */
+/* ================== PORTADA (index) =================== */
+/* ===================================================== */
+
+/* Quitamos float original del sidebar */
+#landing_page .sidebar-pull-right {
+    float: none !important;
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* Botones alineados en fila */
+#landing_page .sidebar-pull-right a {
+    display: inline-block;
+    min-width: 240px;
+    padding: 13px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    margin: 0 18px;
+    transition: all 0.25s ease;
+}
+
+/* Azul corporativo */
+#landing_page a[href*="open"] {
+    background: #0b3d91 !important;
+    color: #ffffff !important;
+    box-shadow: 0 5px 12px rgba(11,61,145,0.25);
+}
+
+#landing_page a[href*="open"]:hover {
+    background: #082e6b !important;
+    transform: translateY(-2px);
+}
+
+/* Verde corporativo */
+#landing_page a[href*="view"] {
+    background: #1f6f2f !important;
+    color: #ffffff !important;
+    box-shadow: 0 5px 12px rgba(31,111,47,0.25);
+}
+
+#landing_page a[href*="view"]:hover {
+    background: #165224 !important;
+    transform: translateY(-2px);
+}
+/* ===================================================== */
+/* RESET TOTAL LAYOUT LANDING */
+/* ===================================================== */
+
+#landing_page {
+    display: block !important;
+}
+
+/* Quitamos cualquier layout lateral */
+#landing_page .main-content {
+    width: 100% !important;
+    float: none !important;
+    text-align: center;
+}
+
+#landing_page .sidebar-pull-right {
+    width: 100% !important;
+    float: none !important;
+    clear: both !important;
+    text-align: center !important;
+    margin-top: 25px !important;
+}
+
+/* Botones alineados */
+#landing_page .sidebar-pull-right a {
+    display: inline-block !important;
+    margin: 0 20px !important;
+}
+/* ===================================================== */
+/* ANULAR FLUSH-RIGHT DEL LANDING */
+/* ===================================================== */
+
+#landing_page .front-page-button.flush-right {
+    float: none !important;
+    text-align: center !important;
+}
+
+/* Convertir contenedor en bloque centrado */
+#landing_page .sidebar-pull-right {
+    float: none !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 25px !important;
+}
+
+/* Botones en línea */
+#landing_page .sidebar-pull-right a {
+    display: inline-block !important;
+    margin: 0 20px !important;
+}
+/* SOLO subir la caja en la página principal */
+body:not(.modo-triple) #content {
+    margin-top: -115px !important;
+}
+
+/* AJUSTE PARA QUE LA CAJA NO SE ALARGUE */
+#container, #content {
+    height: auto !important;
+    min-height: auto !important;
+    padding-bottom: 40px !important; /* Espacio estético al final del formulario */
+}
